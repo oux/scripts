@@ -1,0 +1,1 @@
+/home/seb/workspace/misc/vim-rst-tables/ftplugin/rst_tables.vim

@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/seb/VirtualBox VMs.bkp'
+let g:netrw_dirhist_2='/home/seb/VirtualBox VMs.bkp/win8'
+let g:netrw_dirhist_3='/home/seb/VirtualBox VMs.bkp/win8/Snapshots'
+let g:netrw_dirhist_4='/home/seb/ssd/win8/Snapshots'
+let g:netrw_dirhist_5='/home/seb/VirtualBox VMs.bkp/win8/Snapshots'
+let g:netrw_dirhist_6='/home/seb/VirtualBox VMs.bkp/win8'
+let g:netrw_dirhist_7='/home/seb/ssd/win8/Snapshots'
+let g:netrw_dirhist_8='/home/seb/.bashrc.d'
