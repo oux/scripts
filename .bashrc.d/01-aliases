@@ -1,0 +1,78 @@
+alias b="echo -e '\a'"
+alias todo="vi ~/WW/ww.votl"
+alias z="ssh zen"
+alias mzen="sshfs zen:android ~/android"
+alias c="chromium-browser --proxy-pac-url=http://wpad.intel.com/wpad.dat"
+alias hl="grep -A9999"
+alias tf="cd ~/workspace/teamforge"
+alias bns="cd /bignslow/smichel"
+alias grep="grep -sI --color"
+alias serial_comm="minicom --device /dev/ttyUSB0"
+alias t="tmux a"
+alias reboot="sudo reboot"
+
+function 2dec() {
+echo "ibase=16; $1"| bc -q
+}
+
+function is_function() {
+    type $1 2> /dev/null|grep -q "is a function"
+}
+
+function 2hex() {
+echo "obase=16; $1"| bc -q
+}
+
+function epoch2h() {
+date -d "1/1/1970 + $1 seconds"
+}
+
+function com() {
+mv $1 $1~
+}
+
+function fsize() {
+printf '\33]50;%s%d\007' "xft:Menlo:pixelsize=" $1
+}
+
+function do_loop() {
+while :
+do
+    eval ${@}
+    sleep 1
+done
+
+}
+
+function go() {
+
+pushd $(dirname $(readlink $(which $1)))
+
+}
+
+function op {
+awk 'BEGIN{print '"$*"'}'
+}
+
+function rmm {
+rm "${@}"
+for i in  $(history | awk '/rmm/{print $1}' |tac)
+do
+    history -d $i
+done
+}
+
+function resetusb() {
+# reseting USB2 ports
+for i in $(ls /sys/bus/pci/drivers/ehci_hcd/|grep :)
+do echo $i >/sys/bus/pci/drivers/ehci_hcd/unbind
+    echo $i >/sys/bus/pci/drivers/ehci_hcd/bind
+done
+# reseting USB3 ports (if there none you'll get errors)
+for i in $(ls /sys/bus/pci/drivers/xhci_hcd/|grep :)
+do echo $i >/sys/bus/pci/drivers/xhci_hcd/unbind
+    echo $i >/sys/bus/pci/drivers/xhci_hcd/bind
+done
+}
+
+# vim:ft=sh

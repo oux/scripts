@@ -1,0 +1,4 @@
+false &&[ -z "$TMUX" ] && {
+    tmux ls && exec tmux a || exec tmux
+}
+

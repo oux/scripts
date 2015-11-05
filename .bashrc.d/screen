@@ -1,0 +1,12 @@
+#function o() {
+#if [ $(xrandr |grep -c '*')'' -eq 1 ]
+#then
+#    xrandr --output DP1 --auto --left-of VGA1 --rotate left
+#    pidof synergys && killall synergys && synergys
+#else
+#    xrandr --output DP1 --off
+#    pidof synergys && killall synergys && synergys
+#fi
+#}
+
+# vim:ft=sh

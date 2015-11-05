@@ -1,0 +1,69 @@
+[color]
+	ui = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+
+[alias]
+    show = show -M
+    log = log -M
+    #lg = log --graph --decorate --name-status --stats
+    #lg = log --graph --decorate --name-status --stat
+    lg = log --graph --decorate --stat -M
+    l = log --oneline --decorate -M
+    t = log --oneline --graph --decorate -M
+    s = status --ignored
+    h = log --format=\"[%cd] %s\" -M
+
+[user]
+	name = Sebastien MICHEL
+	email = sebastien.michel@intel.com
+
+[color]
+	ui = auto
+
+[pull]
+    rebase = true
+
+[review "android.intel.com"]
+    username = michelse
+
+# 10.237.188.206 = tlsecvh003g03.tl.intel.com
+#[url "git://10.237.188.206/"]
+#    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+#[url "git://10.237.188.206/"]
+#    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
+#[url "http://android.git.kernel.org/"]
+#    insteadOf=git://android.git.kernel.org/
+
+###ODC###[url "ssh://gerrit-celad.tl.intel.com/"]
+###ODC###    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+###ODC###[url "ssh://gerrit-celad.tl.intel.com/"]
+###ODC###    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
+###ODC###[url "ssh://gerrit-celad.tl.intel.com/"]
+###ODC###    insteadOf=git://android.intel.com/
+###ODC###[url "ssh://gerrit-celad.tl.intel.com/"]
+###ODC###    insteadOf=ssh://android.intel.com/
+[url "ssh://gerrit-glb.tl.intel.com/"]
+    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+[url "ssh://gerrit-glb.tl.intel.com/"]
+    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
+[url "ssh://gerrit-glb.tl.intel.com/"]
+    insteadOf=git://android.intel.com/
+[url "ssh://gerrit-glb.tl.intel.com/"]
+    insteadOf=ssh://android.intel.com/
+###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
+###FSL###    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
+###FSL###    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
+###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
+###FSL###    insteadOf=git://android.intel.com/
+###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
+###FSL###    insteadOf=ssh://android.intel.com/
+
+[url "https://github.com/"]
+     insteadOf=git://github.com/
+
+[push]
+	default = simple

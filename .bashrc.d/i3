@@ -1,0 +1,6 @@
+
+rw()
+{
+i3-msg 'rename workspace to "'$*'"'
+}
+

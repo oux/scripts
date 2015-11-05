@@ -1,0 +1,3 @@
+[ -d ${HOME}/sshfs ] || return
+pgrep -u ${UID} afuse >/dev/null && return
+afuse -o timeout=600 -o mount_template="sshfs -o idmap=user %r:/ %m" -o unmount_template="fusermount -u -z %m" ${HOME}/sshfs

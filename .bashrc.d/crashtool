@@ -1,0 +1,10 @@
+extract_events () {
+for evt in EVENT*zip
+do
+    mkdir -p ${evt%.zip}
+    pushd ${evt%.zip}
+    unzip -x ../$evt
+    popd
+    rm $evt    
+done
+}

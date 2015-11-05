@@ -1,0 +1,6 @@
+function s() {
+    (
+    pidof synergys && killall synergys && synergys
+    pidof synergyc && killall synergyc && synergyc localhost
+    )
+}

@@ -185,8 +185,8 @@ autocmd BufRead *.inc,*.php,*.php3 set ft=php
 autocmd BufRead *.c,*.h set ft=c
 autocmd BufRead *.sh set ft=sh
 autocmd BufRead *.pl set ft=perl
-autocmd BufRead *logcat* set ft=logcat
-autocmd BufRead *aplog* set ft=logcat
+autocmd BufRead *logcat set ft=logcat
+autocmd BufRead *aplog set ft=logcat
 autocmd BufRead *.mk set et
 autocmd BufRead *.mk set ts=2
 autocmd BufRead *.mk set sw=2
@@ -261,7 +261,8 @@ highlight ColorColumn ctermbg=darkgray
 " autocmd FileType c,cpp,java let &colorcolumn=join(range(&textwidth+1,999),",")
 " set colorcolumn=+1
 
-set ttymouse=urxvt
+"set ttymouse=urxvt
+set ttymouse=xterm2
 map! [7~ <Home>
 map! [8~ <End>
 map [7~ <Home>
@@ -367,14 +368,6 @@ if &encoding =~ "utf-8"
     inoreab urlft http://ft:ft@michoux.born2frag.org/foyerft/
 endif
 
-highlight Cursor   guifg=red  guibg=black
-highlight iCursor  guifg=white  guibg=steelblue 
-" highlight Comment  term=bold ctermfg=cyan
-" highlight Comment ctermfg=13
-
-
-
-
 "noremap  <C-]>
 cnoremap  <CR>
 map <F3> :execute "lvimgrep /" . expand("<cword>") . "/j **" <Bar> lw<CR>
@@ -404,20 +397,21 @@ vmap P "0p
 """ Start -- colorscheme manxome amend
 hi clear Folded
 " highlight Folded ctermbg=0 ctermfg=7
-hi Folded       ctermbg=248 cterm=bold ctermfg=5
-hi FoldColumn   ctermbg=248 ctermfg=6
+hi Folded       ctermbg=232 cterm=bold ctermfg=5
+hi FoldColumn   ctermbg=232 ctermfg=6
 "highlight Folded ctermfg=darkblue
 hi Search       ctermfg=0 ctermbg=11
 hi MatchParen   ctermbg=14 ctermfg=2
-hi Visual       ctermbg=7 ctermfg=2
+hi Visual       ctermfg=11 ctermbg=4
 hi DiffChange   term=reverse ctermbg=225 ctermfg=1 guibg=LightMagenta
 hi DiffText     term=reverse ctermbg=9 ctermfg=5 gui=bold guibg=Red
 hi DiffAdd      term=bold ctermbg=81 guibg=LightBlue ctermfg=2
 hi Pmenu        ctermbg=225 guibg=LightMagenta ctermfg=2 
 hi PmenuSel     ctermbg=7 guibg=Grey ctermfg=1
 hi PmenuSbar    ctermbg=248 guibg=Grey ctermfg=4
-hi StatusLineNC ctermfg=8 ctermbg=16
-hi StatusLine   ctermfg=7 ctermbg=8
+hi StatusLineNC ctermbg=0
+" hi StatusLineNC ctermfg=8 ctermbg=0
+hi StatusLine   ctermfg=15 ctermbg=5
 hi DiffAdd      term=bold ctermfg=2 ctermbg=0
 """ End -- colorscheme manxome amend
 
@@ -448,6 +442,7 @@ autocmd BufRead .followup,.article*,.letter,/tmp/mutt*,*.txt,.signature*,signatu
 autocmd BufRead .followup,.article*,.letter,/tmp/mutt* normal ;vide
 nnoremap ;vide gg<CR>/^$<CR>
 set nostartofline   " don't jump to first character when paging
+nmap <C-N> nzb
 
 " Extra whitespaces highlighting
 " Highlight trailing whitespaces and spaces followed by tabs
@@ -455,6 +450,11 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 highlight Search term=reverse cterm=bold ctermfg=61 ctermbg=0
+highlight Cursor   guifg=red  guibg=black
+highlight iCursor  guifg=white  guibg=steelblue 
+highlight ColorColumn ctermbg=darkgray
+" highlight Comment  term=bold ctermfg=cyan
+" highlight Comment ctermfg=13
 
 " Expand tabs for java
 autocmd FileType java setlocal expandtab
@@ -464,4 +464,14 @@ set laststatus=2
 " set colorcolumn=80
 cnoremap <C-a> <home>
 
+"let g:pathogen_disabled="ShowMarks"
+let g:pathogen_disabled = []
+call add(g:pathogen_disabled, 'ShowMarks')
 execute pathogen#infect()
+runtime ftplugin/man.vim
+noremap K :Man <cword><CR>
+"let g:showmarks_textlower="\t>"
+hi default ShowMarksHLl ctermfg=green ctermbg=blue cterm=bold guifg=blue guibg=lightblue gui=bold
+hi default ShowMarksHLu ctermfg=green ctermbg=yellow cterm=bold guifg=blue guibg=lightblue gui=bold
+hi default ShowMarksHLo ctermfg=green ctermbg=red cterm=bold guifg=blue guibg=lightblue gui=bold
+hi default ShowMarksHLm ctermfg=green ctermbg=cyan cterm=bold guifg=blue guibg=lightblue gui=bold
