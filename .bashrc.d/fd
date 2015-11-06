@@ -1,118 +1,45 @@
-#bd() {
-#    TOREMOVE=${PWD}/
-#    TOREMOVE=${TOREMOVE##*$1}
-#    TOREMOVE=${TOREMOVE#*/}
-#    if [ "$TOREMOVE" -a "$TOREMOVE" != "${PWD}" ]
-#    then
-#        TARGET=${PWD::$((${#PWD} - ${#TOREMOVE}))}
-#        echo $TARGET
-#        cd $TARGET
-#    fi
-#}
-#_bd() {
-#   COMPREPLY=()
-#   cur=${COMP_WORDS[COMP_CWORD]}
-#   COMPREPLY=( $(echo -e "${PWD//\//\n}" |grep $cur ) )
-#
-#}
-#complete -F _bd bd
-#
-#bd1() {
-#    TOREMOVE=${PWD}/
-#    TOREMOVE=${TOREMOVE##*$1}
-#    TOREMOVE=${TOREMOVE#*/}
-#    if [ "$TOREMOVE" -a "$TOREMOVE" != "${PWD}" ]
-#    then
-#        TARGET=${PWD::$((${#PWD} - ${#TOREMOVE}))}
-#        echo $TARGET
-#        cd $TARGET
-#    fi
-#}
-#bd2() {
-#    TOREMOVE=${PWD}/
-#    ORIG=${PWD}/
-#    TOREMOVE=${TOREMOVE##*$1}
-#    TOREMOVE=${TOREMOVE#*/}
-#    echo $TOREMOVE
-#    if [ "$TOREMOVE" -a "$TOREMOVE" != "${PWD}" ]
-#    then
-#        TARGET=${ORIG%$TOREMOVE}
-#        echo $TARGET
-#        cd $TARGET
-#    fi
-#}
-
 fd()
 {
-    local pwd="${PWD%/${1%/}/*}"
-    if [ "${1:0:1}" == "/" ]
-    then
-        cd $1
-    else
-        [ "${pwd}" = "${PWD}" ] && return
-        cd ${pwd}/${1}
-    fi
-    echo ${PWD}
+	local base="${1%%/*}"
+	local pwd="${PWD%/${base}/*}"
+
+	[ "${pwd}" = "${PWD}" ] && return
+
+	cd ${pwd}/${1}
+	echo ${PWD}
 }
 
 _fd ()
 {
-    local cur
-    COMPREPLY=()
-    _get_comp_words_by_ref cur
-    if [ "${cur%/*}" == "${cur}" ]
-    then
-        [ "$COMPLETION_DEBUG" ] && echo cur:$cur
-        COMPREPLY=($(compgen -W "${PWD//\//\/ }" -- "$cur"))
-    else
-        LIST_PATHES=$(i=$PWD; while [ "${i#*/}" != $i ]; do i=${i#*/}; echo ${i}/; done)
-        SELECTED_LIST_PATHES=$(compgen -W "$PWD $LIST_PATHES" -- $cur) # Add $PWD to permit completion which begins by /
-        [ "$COMPLETION_DEBUG" ] && echo
-        [ "$COMPLETION_DEBUG" ] && echo cur:$cur
-        [ "$COMPLETION_DEBUG" ] && echo LIST_PATHES:$LIST_PATHES
-        [ "$COMPLETION_DEBUG" ] && echo SELECTED_LIST_PATHES:$SELECTED_LIST_PATHES
-        EXPENDED_LIST_PATHES=$(
-        for i in ${SELECTED_LIST_PATHES}
-        do
-            if [ "$FD_EXTENDED" ] # Option ...
-            then # ... to get all left possibilities ...
-                echo $i
-                i=${i#$cur}
-                while [ "$i" != "${i%/*}" ]
-                do
-                    i=${i%/*}
-                    echo $cur$i/
-                done
-            else # ... or only the immediate ones.
-                i=${i#$cur}
-                if [ "$i" ]
-                then
-                    i=${i%%/*}
-                    echo $cur$i/
-                fi
-            fi
-        done
-        )
-        [ "$COMPLETION_DEBUG" ] && echo EXPENDED_LIST_PATHES:$EXPENDED_LIST_PATHES
-        COMPREPLY=($EXPENDED_LIST_PATHES)
-    fi
+	local cur
+	local base
 
-    return 0
+	COMPREPLY=()
+	_get_comp_words_by_ref cur words
+    [ "$COMPLETION_DEBUG" ] && echo
+    [ "$COMPLETION_DEBUG" ] && echo cur:$cur
+
+	[ $COMP_CWORD -ne 1 ] && return
+
+	base="${cur%%/*}"
+    [ "$COMPLETION_DEBUG" ] && echo base:$base
+	if [ "$cur" = "$base" ]; then
+		COMPREPLY=($(compgen -W "${PWD//\//\/ }" -- "$cur"))
+	else
+        if [ ${words[0]} != "fd" ]
+        then
+            i="${PWD#*${cur}}"
+            [ "$COMPLETION_DEBUG" ] && echo i:$i
+            [ "$i" != "$PWD" ] &&
+                COMPREPLY=("$cur${i%%/*}/")
+        else
+            COMPREPLY=($(cd "/${PWD%/${base}/*}" && compgen -S / -d "$cur"))
+        fi
+	fi
 }
 
 complete -o nospace -F _fd fd
-
-bd=fd
-__pwd_parts ()
-{
-    local cur
-    COMPREPLY=()
-    _get_comp_words_by_ref cur
-    [ $COMP_CWORD -eq 1 ] && \
-        COMPREPLY=($(compgen -W "${PWD//\// }" -- "$cur"))
-    return 0
-}
-
-complete -F __pwd_parts bd
+alias bd=fd
+complete -o nospace -F _fd bd
 
 # vi:ft=sh
