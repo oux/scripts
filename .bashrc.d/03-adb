@@ -1,6 +1,6 @@
 
 
-export ANDROID_ADB_SERVER_PORT=5038
+# export ANDROID_ADB_SERVER_PORT=5038
 
 dumplogs () {
     DIR=~/bz/perso/$(date +"%Y%m%d")
