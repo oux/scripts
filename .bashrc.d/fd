@@ -1,11 +1,12 @@
 fd()
 {
 	local base="${1%%/*}"
-	local pwd="${PWD%/${base}/*}"
+	local pwd="$PWD/"
+	pwd="${pwd%/${base}/*}"
 
 	[ "${pwd}" = "${PWD}" ] && return
 
-	cd ${pwd}/${1}
+	cd "${pwd}/${1}" &&
 	echo ${PWD}
 }
 
@@ -13,7 +14,10 @@ _fd ()
 {
 	local cur
 	local base
+    local -r pwd="${PWD}/"
 
+    #compopt -o filenames # To add \ before spaces on completion result
+    local IFS=$'\n' # take into account spaces on pathes
 	COMPREPLY=()
 	_get_comp_words_by_ref cur words
     [ "$COMPLETION_DEBUG" ] && echo
@@ -21,25 +25,74 @@ _fd ()
 
 	[ $COMP_CWORD -ne 1 ] && return
 
-	base="${cur%%/*}"
-    [ "$COMPLETION_DEBUG" ] && echo base:$base
-	if [ "$cur" = "$base" ]; then
-		COMPREPLY=($(compgen -W "${PWD//\//\/ }" -- "$cur"))
-	else
-        if [ ${words[0]} != "fd" ]
-        then
-            i="${PWD#*${cur}}"
-            [ "$COMPLETION_DEBUG" ] && echo i:$i
-            [ "$i" != "$PWD" ] &&
-                COMPREPLY=("$cur${i%%/*}/")
-        else
-            COMPREPLY=($(cd "/${PWD%/${base}/*}" && compgen -S / -d "$cur"))
-        fi
-	fi
+    case $cur in
+        */*)
+            base="${cur%%/*}"
+            [ "$COMPLETION_DEBUG" ] && echo base:$base
+            COMPREPLY=($(cd "/${pwd%/${base}/*}" && compgen -S / -d "$cur"))
+            #COMPREPLY=($(fd "$cur" && compgen -S / -d "$cur"))
+            ;;
+        *)
+            COMPREPLY=($(compgen -S / -W "${PWD//\//$'\n'}" -- "$cur"))
+            ;;
+    esac
 }
 
-complete -o nospace -F _fd fd
-alias bd=fd
-complete -o nospace -F _fd bd
+complete -o filenames -o nospace -F _fd fd
+
+bd()
+{
+	local pwd="$PWD/"
+	pwd="${pwd%${1}*}"
+
+	[ "${pwd}" = "${PWD}" ] && return
+
+	cd "${pwd}${1}" &&
+	echo ${PWD}
+}
+
+_bd ()
+{
+	local cur
+	local base
+    local -r pwd="${PWD}/"
+
+    #compopt -o filenames # To add \ before spaces on completion result
+    local IFS=$'\n' # take into account spaces on pathes
+	COMPREPLY=()
+	_get_comp_words_by_ref cur words
+    [ "$COMPLETION_DEBUG" ] && echo
+    [ "$COMPLETION_DEBUG" ] && echo cur:$cur
+
+	[ $COMP_CWORD -ne 1 ] && return
+
+    case $cur in
+        */*)
+            LIST_PATHES="$PWD"$'\n'"$(i=$PWD; while [ "${i#*/}" != $i ]; do i=${i#*/}; echo ${i}/; done)"
+            SELECTED_LIST_PATHES=$(compgen -W "$LIST_PATHES" -- $cur) # Add $PWD to permit completion which begins by /
+            [ "$COMPLETION_DEBUG" ] && echo LIST_PATHES:$LIST_PATHES
+            [ "$COMPLETION_DEBUG" ] && echo SELECTED_LIST_PATHES:$SELECTED_LIST_PATHES
+
+            COMPREPLY=($(
+            for i in ${SELECTED_LIST_PATHES}
+            do
+                cur="${cur//\\/}"
+                i="${i#$cur}"
+                [ "$i" ] &&
+                    echo "$cur${i%%/*}/"
+            done))
+            ;;
+        *)
+            COMPREPLY=($(compgen -S / -W "${pwd//\//$'\n'}" -- "$cur"))
+            ;;
+    esac
+}
+
+complete -o filenames -o nospace -F _bd bd
+
+# Add following lines on your .inputrc to switch between fd and bd command
+# during a path completion:
+# "\C-x\C-b": "b"
+# "\C-x\C-f": "f"
 
 # vi:ft=sh
