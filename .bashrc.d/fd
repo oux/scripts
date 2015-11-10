@@ -16,7 +16,7 @@ fd()
 
 _fd ()
 {
-	local cur pwd suffix=""
+	local cur pwd
     local IFS=$'\n' # take into account spaces on pathes
 
 	COMPREPLY=()
@@ -27,8 +27,7 @@ _fd ()
     case $cur in
         */*)
             pwd=$(__fd_get_parent "$cur")
-            [ -z "$pwd" ] && suffix=/  # to avoid result// with $pwd is non-empty
-            COMPREPLY=($(cd "$pwd/" && compgen -S "$suffix" -d -- "$cur"))
+            COMPREPLY=($(cd "$pwd/" && compgen -S / -d -- "$cur"))
             ;;
         *) COMPREPLY=($(compgen -S / -W "${PWD//\//$'\n'}" -- "$cur")) ;;
     esac
