@@ -326,4 +326,26 @@ MTBF=$1
 shift
 ssh mtbf$MTBF "adb shell ${@}"
 }
+
+function ainst() {
+local save=false
+local suffix=.ori
+case $1 in
+    -b|b|-s|s)
+        save=true
+        shift
+        suffix=$1
+        shift
+        ;;
+esac
+local -r file=$1
+local dest=/system${file##*/system}
+local bkp=${dest}$suffix
+
+$save &&
+    adb shell cp -a $dest $bkp
+adb push $file $dest
+adb shell "ls -l $dest && md5sum $dest"
+adb shell "ls -l $bkp && md5sum $bkp"
+}
 # vim:ft=sh
