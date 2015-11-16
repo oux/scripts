@@ -18,7 +18,7 @@
 " je cherche a faire: {
 "  }
 
-set guifont=-b&h-lucidatypewriter-medium-r-normal-*-*-140-*-*-m-*-iso8859-15
+" set guifont=-b&h-lucidatypewriter-medium-r-normal-*-*-140-*-*-m-*-iso8859-15
 " set encoding=iso-8859-15
 "set encoding=utf-8
 "set fileencoding=utf-8
@@ -475,3 +475,12 @@ hi default ShowMarksHLl ctermfg=green ctermbg=blue cterm=bold guifg=blue guibg=l
 hi default ShowMarksHLu ctermfg=green ctermbg=yellow cterm=bold guifg=blue guibg=lightblue gui=bold
 hi default ShowMarksHLo ctermfg=green ctermbg=red cterm=bold guifg=blue guibg=lightblue gui=bold
 hi default ShowMarksHLm ctermfg=green ctermbg=cyan cterm=bold guifg=blue guibg=lightblue gui=bold
+"call add(g:pathogen_disabled, 'vim-airline')
+let g:airline_theme='oux'
+" let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+"set t_Co=256
+"echo &t_Co
