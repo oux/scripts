@@ -476,7 +476,9 @@ hi default ShowMarksHLu ctermfg=green ctermbg=yellow cterm=bold guifg=blue guibg
 hi default ShowMarksHLo ctermfg=green ctermbg=red cterm=bold guifg=blue guibg=lightblue gui=bold
 hi default ShowMarksHLm ctermfg=green ctermbg=cyan cterm=bold guifg=blue guibg=lightblue gui=bold
 "call add(g:pathogen_disabled, 'vim-airline')
-let g:airline_theme='oux'
+let g:airline_theme='bubblegum'
+" I also like:
+"let g:airline_theme='hybridline'
 " let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
