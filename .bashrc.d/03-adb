@@ -288,6 +288,8 @@ acmdline
 alias drop_gem_caches='adb shell "echo 0xff > /d/dri/0/i915_gem_drop_caches"'
 alias drop_gem_caches_continue='adb shell "while : ; do echo 0xff > /d/dri/0/i915_gem_drop_caches; sleep 1; done"'
 alias dump_gen_gfx="adb shell cat /sys/class/drm/card0/gfx_memtrack/i915_gem_meminfo"
+alias debug_hwc="adb shell service call hwc.info 99"
+
 alias webgl="adb shell am start -a android.intent.action.VIEW -t text/html -n com.android.chrome/com.google.android.apps.chrome.Main -d https://www.khronos.org/registry/webgl/conformance-suites/1.0.2/webgl-conformance-tests.html?skip=multisample-corruption.html,uniform-default-values.html"
 alias mobile01="adb shell am start -a android.intent.action.VIEW -t text/html -n com.android.chrome/com.google.android.apps.chrome.Main -d www.mobile01.com/newsarchive.php"
 alias chromeurl="adb shell am start -a android.intent.action.VIEW -t text/html -n com.android.chrome/com.google.android.apps.chrome.Main -d chrome://urls"
@@ -348,4 +350,5 @@ adb push $file $dest
 adb shell "ls -l $dest && md5sum $dest"
 adb shell "ls -l $bkp && md5sum $bkp"
 }
+
 # vim:ft=sh
