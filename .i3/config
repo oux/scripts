@@ -172,7 +172,8 @@ bar {
     strip_workspace_numbers no
 
     # font pango:Anonymice Powerline 10
-    font -misc-fixed-medium-r-normal--12-120-75-75-C-70-iso10646-1
+    # font -misc-fixed-medium-r-normal--12-120-75-75-C-70-iso10646-1
+    font pango:Ubuntu Mono derivative Powerline Bold 9
 
     #status_command ~/.i3/myi3status.sh
     #i3bar_command ~/.local/lib/python2.7/site-packages/powerline/bindings/bar/powerline-bar.py --i3 | ~/workspace/misc/lemonbar/lemonbar -b

@@ -479,10 +479,11 @@ hi default ShowMarksHLm ctermfg=green ctermbg=cyan cterm=bold guifg=blue guibg=l
 let g:airline_theme='bubblegum'
 " I also like:
 "let g:airline_theme='hybridline'
-" let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
+let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+"let g:Powerline_symbols = 'fancy'
+"let g:airline_symbols.space = "\ua0"
 "set t_Co=256
 "echo &t_Co
