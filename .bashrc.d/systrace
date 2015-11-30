@@ -21,7 +21,11 @@ echo $PREFIX-$IDX$SUFFIX
 
 function st_mktrace() {
 
-adb shell "echo 1 |tee /d/tracing/events/binder/binder_transaction{,_received}/enable > /dev/null"
+#adb shell "echo 1 |tee /d/tracing/events/binder/binder_transaction{,_received}/enable > /dev/null"
+adb shell "echo 0 > /sys/kernel/debug/tracing/trace;
+echo 0 > /sys/kernel/debug/tracing/events/enable;
+echo 1 > /sys/kernel/debug/tracing/events/i915/enable;
+echo 0 > /sys/kernel/debug/tracing/events/i915/i915_reg_rw/enable;"
 
 local CATS=$(python $SYSTRACE -l |sed "s/- .*//;s/^[[:space:]]*//")
 
