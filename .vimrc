@@ -52,7 +52,7 @@ colorscheme manxome
 set hlsearch
 
 set showmatch
-set scrolloff=10
+"set scrolloff=10
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
 set nocompatible	" Use Vim defaults (much better!)
@@ -368,19 +368,29 @@ if &encoding =~ "utf-8"
     inoreab urlft http://ft:ft@michoux.born2frag.org/foyerft/
 endif
 
+
+command! -nargs=1 Silent
+            \ | execute ':silent !'.<q-args>
+            \ | execute ':redraw!'
+
 "noremap  <C-]>
 cnoremap  <CR>
-map <F3> :execute "lvimgrep /" . expand("<cword>") . "/j **" <Bar> lw<CR>
-map <F4> :execute "lgrep -r " . expand("<cword>") . " ." <Bar> lw<CR>
-noremap <C-F5> :Fp am_\\|ActivityManager<cr>
+" :lolder to reopen old searches
+map <F1> :execute "lclose" <cr>
+" map <F1> :execute "lclose" <Bar> call setloclist(0,[])<CR>
+map <F2> :execute "lvimgrep! /" . expand("<cword>") . "/j %" <Bar>botright lw<CR>
+map <F3> :execute "lvimgrep! /" . expand("<cword>") . "/j %:h/*"  <Bar>botright lw<cr>
+" map <F3> :execute "silent lgrepadd! " . expand("<cword>") . " %:h/*" <Bar>:redraw! <Bar>botright lw<cr>
+map <F4> :execute "lvimgrep! /" . expand("<cword>") . "/j %:h/**" <Bar>botright lw<CR>
 noremap <F5> :e!<cr>
 noremap <F6> :set list!<cr>:set list?<cr>
-noremap <F7> :set paste!<cr>:set paste?<cr>
-noremap <C-F7> :set foldenable!<cr>:set foldenable?<cr>
+noremap <F7> :set foldenable!<cr>:set foldenable?<cr>
 noremap <F8> :set hlsearch!<cr>:set hlsearch?<cr>
-noremap <F9> :botright cwindow<cr>
+noremap <F9> :set paste!<cr>:set paste?<cr>
+noremap [D :bp<cr>
 noremap <C-Left> :bp<cr>
 " noremap [D :bp<cr>
+noremap [C :bn<cr>
 noremap <C-Right> :bn<cr>
 " noremap [C :bn<cr>
 
@@ -487,3 +497,8 @@ let g:airline_powerline_fonts = 1
 "let g:airline_symbols.space = "\ua0"
 "set t_Co=256
 "echo &t_Co
+if has('cscope')
+        if has('quickfix')
+            set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
+        endif
+endif
