@@ -393,6 +393,7 @@ noremap <C-Left> :bp<cr>
 noremap [C :bn<cr>
 noremap <C-Right> :bn<cr>
 " noremap [C :bn<cr>
+map <leader>a :call setloclist(0,[{'bufnr': bufnr(''), 'lnum': line('.'), 'text': getline('.')}], 'a')<cr>
 
 set mouse=n
 set expandtab
