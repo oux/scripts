@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/vim-togglelist"]
 	path = .vim/bundle/vim-togglelist
 	url = https://github.com/milkypostman/vim-togglelist.git
+[submodule ".vim/bundle/vim-editqf"]
+	path = .vim/bundle/vim-editqf
+	url = https://github.com/jceb/vim-editqf.git
