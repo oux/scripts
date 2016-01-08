@@ -31,3 +31,9 @@
 [submodule ".vim/bundle/vim-editqf"]
 	path = .vim/bundle/vim-editqf
 	url = https://github.com/jceb/vim-editqf.git
+[submodule ".vim/bundle/bbye"]
+	path = .vim/bundle/bbye
+	url = https://github.com/moll/vim-bbye.git
+[submodule ".vim/bundle/quickfixsigns"]
+	path = .vim/bundle/quickfixsigns
+	url = https://github.com/tomtom/quickfixsigns_vim.git
