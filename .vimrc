@@ -261,8 +261,10 @@ highlight ColorColumn ctermbg=darkgray
 " autocmd FileType c,cpp,java let &colorcolumn=join(range(&textwidth+1,999),",")
 " set colorcolumn=+1
 
+" To be able to use mouse cursor up to 222 column
 "set ttymouse=urxvt
-set ttymouse=xterm2
+"set ttymouse=xterm2
+"set ttymouse=screen-256colors
 map! [7~ <Home>
 map! [8~ <End>
 map [7~ <Home>
@@ -378,9 +380,13 @@ cnoremap  <CR>
 " :lolder to reopen old searches
 map <F1> :execute "lclose" <cr>
 " map <F1> :execute "lclose" <Bar> call setloclist(0,[])<CR>
+" Search word on current file
 map <F2> :execute "lvimgrep! /" . expand("<cword>") . "/j %" <Bar>botright lw<CR>
+"can be done with: :g/mypattern/caddexpr expand("%") . ":" . line(".") .  ":" . getline(".")
+" Search word on current directory
 map <F3> :execute "lvimgrep! /" . expand("<cword>") . "/j %:h/*"  <Bar>botright lw<cr>
 " map <F3> :execute "silent lgrepadd! " . expand("<cword>") . " %:h/*" <Bar>:redraw! <Bar>botright lw<cr>
+" Search word on current directory and all subdirectories
 map <F4> :execute "lvimgrep! /" . expand("<cword>") . "/j %:h/**" <Bar>botright lw<CR>
 noremap <F5> :e!<cr>
 noremap <F6> :set list!<cr>:set list?<cr>
@@ -395,7 +401,7 @@ noremap <C-Right> :bn<cr>
 " noremap [C :bn<cr>
 map <leader>a :call setloclist(0,[{'bufnr': bufnr(''), 'lnum': line('.'), 'text': getline('.')}], 'a')<cr>
 
-set mouse=n
+"set mouse=n
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -486,6 +492,9 @@ hi default ShowMarksHLl ctermfg=green ctermbg=blue cterm=bold guifg=blue guibg=l
 hi default ShowMarksHLu ctermfg=green ctermbg=yellow cterm=bold guifg=blue guibg=lightblue gui=bold
 hi default ShowMarksHLo ctermfg=green ctermbg=red cterm=bold guifg=blue guibg=lightblue gui=bold
 hi default ShowMarksHLm ctermfg=green ctermbg=cyan cterm=bold guifg=blue guibg=lightblue gui=bold
+
+let g:editqf_no_type_mappings = 1
+
 "call add(g:pathogen_disabled, 'vim-airline')
 let g:airline_theme='bubblegum'
 " I also like:
@@ -503,3 +512,5 @@ if has('cscope')
             set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
         endif
 endif
+
+autocmd FileType qf setlocal nowrap
