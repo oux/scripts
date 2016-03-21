@@ -31,7 +31,7 @@ bindsym $mod+Return exec urxvtcd
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 
 # change focus
 #bindsym $mod+j focus left
@@ -67,10 +67,8 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# split orientation
 bindsym $mod+h split h
-
-# split in vertical orientation
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
@@ -79,7 +77,7 @@ bindsym $mod+f fullscreen
 # change container layout (stacked, tabbed, default)
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
-bindsym $mod+e layout default
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -171,6 +169,19 @@ bindsym Escape mode "default"
 
 bindsym $mod+Shift+S mode "resize"
 
+# Not yet on my i3 version:
+# show_marks yes
+bindsym $mod+m exec i3-msg mark tmp
+bindsym Mod1+Tab exec ~/bin/i3_toggle_containers.py tmp
+bindsym $mod+t exec ~/bin/i3_toggle_containers.py todo
+
+bindsym $mod+shift+KP_1 exec i3-msg mark 1
+bindsym $mod+KP_1 exec ~/bin/i3_toggle_containers.py 1
+bindsym $mod+shift+KP_2 exec i3-msg mark 2
+bindsym $mod+KP_2 exec ~/bin/i3_toggle_containers.py 2
+bindsym $mod+shift+KP_3 exec i3-msg mark 3
+bindsym $mod+KP_3 exec ~/bin/i3_toggle_containers.py 3
+
 # Multi-screen
 bindsym $mod+x move workspace to output right
 # exec xrandr --output DP1 --pos -1200x-620 --auto --left-of VGA1 --rotate left
@@ -188,7 +199,8 @@ bar {
     #status_command ~/.i3/myi3status.sh
     #i3bar_command ~/.local/lib/python2.7/site-packages/powerline/bindings/bar/powerline-bar.py --i3 | ~/workspace/misc/lemonbar/lemonbar -b
     #status_command ~/.local/lib/python2.7/site-packages/powerline/bindings/bar/powerline-bar.py --i3
-    status_command i3status | ~/.i3/i3status.py w t 2>> /tmp/i3status.log
+    status_command i3blocks
+    # status_command i3status | ~/.i3/i3status.py w t 2>> /tmp/i3status.log
 }
 
 default_orientation vertical
@@ -204,7 +216,7 @@ exec synergys
 # exec_always xrdb -load ~/.Xresources
 bindsym $mod+Shift+p move container left
 bindsym $mod+Shift+n move container right
-bindsym $mod+Shift+w exec "virtualbox --startvm win8 &> /tmp/virtualbox.log"
+#bindsym $mod+Shift+w exec "virtualbox --startvm win8 &> /tmp/virtualbox.log"
 bindsym $mod+u exec "xrdb -load .Xresources && urxvt"
 workspace_auto_back_and_forth yes
 
