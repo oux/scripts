@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/quickfixsigns"]
 	path = .vim/bundle/quickfixsigns
 	url = https://github.com/tomtom/quickfixsigns_vim.git
+[submodule ".vim/bundle/vim-bookmarks"]
+	path = .vim/bundle/vim-bookmarks
+	url = https://github.com/MattesGroeger/vim-bookmarks.git
