@@ -8,6 +8,7 @@ FLASHTOOL_PATH=~/bin/flashtool
 
 alias sf="cd $DEFAULT_WORKSPACE_SOFIA/android; source ~/intel/bin/compilervars.sh ia32; source build/envsetup.sh; lunch sofia3g_xges1_1_ages2_svb-userdebug"
 
+alias flash_sofia='/usr/bin/downloadTool.pft --library=/usr/lib/platformflashtool/libDownloadTool.so'
 alias sf_flash="$FLASHTOOL_PATH/DownloadTool --library=$FLASHTOOL_PATH/libDownloadTool.so"
 alias sf3gr_flash="$FLASHTOOL_PATH/sf3gr/downloadtool --library=$FLASHTOOL_PATH/sf3gr/libDownloadTool.so"
 

@@ -1,8 +1,10 @@
+# With neovim ctrl+c on load of big files doesn't work
+# alias vi=nvim
 alias b="echo -e '\a'"
-alias todo="vi ~/WW/ww.votl"
 alias z="ssh zen"
 alias mzen="sshfs zen:android ~/android"
-alias c="chromium-browser --proxy-pac-url=http://wpad.intel.com/wpad.dat"
+alias c="cd $(< ~/.cwd)"
+# alias c="chromium-browser --proxy-pac-url=http://wpad.intel.com/wpad.dat"
 alias hl="grep -A9999"
 alias tf="cd ~/workspace/teamforge"
 alias bns="cd /bignslow/smichel"
@@ -10,6 +12,15 @@ alias grep="grep -sI --color"
 alias serial_comm="minicom --device /dev/ttyUSB0"
 alias t="tmux a"
 alias reboot="sudo reboot"
+
+function todo() {
+if pgrep -f "vi /home/seb/WW/ww.votl"
+then
+    ~/bin/i3_toggle_containers.py todo
+else
+    i3-msg mark todo && vi ~/WW/ww.votl && i3-msg unmark todo
+fi
+}
 
 function mkcd() {
 mkdir -p $1 &&

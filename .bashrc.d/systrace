@@ -1,5 +1,5 @@
 # SYSTRACE=/home/seb/adt-bundle-linux-x86_64/sdk/tools/systrace/systrace.py
-SYSTRACE=/home/seb/android/cht51/external/chromium-trace/systrace.py
+SYSTRACE=/home/seb/android/r2/external/chromium-trace/systrace.py
 SYSTRACELEGACY=/home/seb/adt-bundle-linux-x86_64/sdk/tools/systrace/systrace-legacy.py
 alias setsystrace_old="python $SYSTRACELEGACY --set-tags sync,gfx,camera,video,input,webview,audio,am,wm,view && adb shell stop && adb shell start"
 
