@@ -71,6 +71,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 
 set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~
 " set iskeyword=@,48-57,_
+set iskeyword=@,48-57,192-255,_,-
 
 " We know xterm-debian is a color terminal
 if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
@@ -179,14 +180,20 @@ set nobackup
 " autocmd BufRead *.sh,*.c,*.h,*.pl,mutt*,*.php,*.php3,*.html,*.htm syntax on
 syntax on
 
+autocmd BufRead *.votl set foldenable
+autocmd BufRead .followup,.article*,.letter,/tmp/mutt*,*.txt,.signature*,signature* set ft=mail
+autocmd BufRead .followup,.article*,.letter,/tmp/mutt*,*.txt,.signature*,signature* set nomodeline
+autocmd BufRead .followup,.article*,.letter,/tmp/mutt*,*.txt,.signature*,signature* set noautoindent
+autocmd BufRead .followup,.article*,.letter,/tmp/mutt* normal ;vide
+
 " pour la prog avec mots clés
 autocmd BufRead *.html,*.htm set ft=html
 autocmd BufRead *.inc,*.php,*.php3 set ft=php
 autocmd BufRead *.c,*.h set ft=c
 autocmd BufRead *.sh set ft=sh
 autocmd BufRead *.pl set ft=perl
-autocmd BufRead *logcat set ft=logcat
-autocmd BufRead *aplog set ft=logcat
+autocmd BufRead *logcat* set ft=logcat
+autocmd BufRead *aplog* set ft=logcat
 autocmd BufRead *.mk set et
 autocmd BufRead *.mk set ts=2
 autocmd BufRead *.mk set sw=2
@@ -378,7 +385,7 @@ command! -nargs=1 Silent
 "noremap  <C-]>
 cnoremap  <CR>
 " :lolder to reopen old searches
-map <F1> :execute "lclose" <cr>
+map <F1> :execute "lvimgrep! /" . @/ . "/j %" <Bar>botright lw<CR>
 " map <F1> :execute "lclose" <Bar> call setloclist(0,[])<CR>
 " Search word on current file
 map <F2> :execute "lvimgrep! /" . expand("<cword>") . "/j %" <Bar>botright lw<CR>
@@ -400,11 +407,15 @@ noremap [C :bn<cr>
 noremap <C-Right> :bn<cr>
 " noremap [C :bn<cr>
 map <leader>a :call setloclist(0,[{'bufnr': bufnr(''), 'lnum': line('.'), 'text': getline('.')}], 'a')<cr>
+map <leader>s :QuickfixsignsToggle<cr>
 
 "set mouse=n
+set mouse=
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set cursorline
+"set nofoldenable
 
 vmap P "0p
 
@@ -430,6 +441,7 @@ hi StatusLineNC ctermbg=0
 " hi StatusLineNC ctermfg=8 ctermbg=0
 hi StatusLine   ctermfg=15 ctermbg=5
 hi DiffAdd      term=bold ctermfg=2 ctermbg=0
+hi CursorLine cterm=NONE ctermbg=0
 """ End -- colorscheme manxome amend
 
 "noremap H :e %
@@ -453,10 +465,6 @@ hi DiffAdd      term=bold ctermfg=2 ctermbg=0
 let g:CommandTMaxFiles=50000
 " set wildignore+=cts,out
 
-autocmd BufRead .followup,.article*,.letter,/tmp/mutt*,*.txt,.signature*,signature* set ft=mail
-autocmd BufRead .followup,.article*,.letter,/tmp/mutt*,*.txt,.signature*,signature* set nomodeline
-autocmd BufRead .followup,.article*,.letter,/tmp/mutt*,*.txt,.signature*,signature* set noautoindent
-autocmd BufRead .followup,.article*,.letter,/tmp/mutt* normal ;vide
 nnoremap ;vide gg<CR>/^$<CR>
 set nostartofline   " don't jump to first character when paging
 nmap <C-N> nzb
@@ -484,7 +492,10 @@ cnoremap <C-a> <home>
 "let g:pathogen_disabled="ShowMarks"
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, 'ShowMarks')
-execute pathogen#infect()
+"execute pathogen#infect()
+call pathogen#infect()
+Helptags
+
 runtime ftplugin/man.vim
 noremap K :Man <cword><CR>
 "let g:showmarks_textlower="\t>"
@@ -493,6 +504,8 @@ hi default ShowMarksHLu ctermfg=green ctermbg=yellow cterm=bold guifg=blue guibg
 hi default ShowMarksHLo ctermfg=green ctermbg=red cterm=bold guifg=blue guibg=lightblue gui=bold
 hi default ShowMarksHLm ctermfg=green ctermbg=cyan cterm=bold guifg=blue guibg=lightblue gui=bold
 
+" call QuickfixsignsToggle()
+let g:quickfixsigns_lists = {}
 let g:editqf_no_type_mappings = 1
 
 "call add(g:pathogen_disabled, 'vim-airline')
@@ -514,3 +527,4 @@ if has('cscope')
 endif
 
 autocmd FileType qf setlocal nowrap
+autocmd BufReadPost * :QuickfixsignsDisable
