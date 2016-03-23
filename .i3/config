@@ -182,6 +182,8 @@ bindsym $mod+KP_2 exec ~/bin/i3_toggle_containers.py 2
 bindsym $mod+shift+KP_3 exec i3-msg mark 3
 bindsym $mod+KP_3 exec ~/bin/i3_toggle_containers.py 3
 
+bindsym $mod+Shift+w exec ~/bin/i3_toggle_workspace.py 2
+
 # Multi-screen
 bindsym $mod+x move workspace to output right
 # exec xrandr --output DP1 --pos -1200x-620 --auto --left-of VGA1 --rotate left
