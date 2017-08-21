@@ -1,10 +1,10 @@
 
 case $(hostname) in
-    tldlab045)
+    tldlab021)
         C1="\[\e[32;1m\]"
         C2="\[\e[35;1m\]"
         ;;
-    tldlabsad3)
+    tldlab002)
         C1="\[\e[33;1m\]"
         C2="\[\e[34;1m\]"
         ;;
