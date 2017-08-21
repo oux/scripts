@@ -1,0 +1,14 @@
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #393939, #268bd2
+rofi.color-normal: #303030, #ffffff, #393939, #268bd2, #ffffff
+rofi.color-active: #303030, #268bd2, #393939, #268bd2, #205171
+rofi.color-urgent: #303030, #f3843d, #393939, #268bd2, #ffc39c
+rofi.padding: 2
+rofi.bw: 1
+!rofi.fixed-num-lines: 15
+!rofi.lines: 10
+rofi.scrollbar-width: 2
+rofi.location: 0

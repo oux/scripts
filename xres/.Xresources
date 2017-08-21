@@ -1,0 +1,9 @@
+! urxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
+! #include "/home/seb/.Xresources.d/solarized"
+#include "/home/seb/.Xresources.d/colors.mine"
+!#include "/home/seb/.Xresources.d/colors.tango"
+#include "/home/seb/.Xresources.d/urxvt"
+#include "/home/seb/.Xresources.d/gnuplot"
+#include "/home/seb/.Xresources.d/gui"
+#include "/home/seb/.Xresources.d/xft"
+#include "/home/seb/.Xresources.d/rofi"

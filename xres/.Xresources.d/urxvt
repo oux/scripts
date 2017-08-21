@@ -1,0 +1,163 @@
+URxvt*urlLauncher: x-www-browser
+URxvt*matcher.button:  2
+! URxvt.lineSpace:             -1
+!URxvt*perl-lib:                       .config-xmonad/urxvt/perl
+!URxvt*perl-ext-common:                clipboard,confirm-paste,font,searchable-scrollback,selection-popup,keyboard-select,autocomplete-ALL-the-things
+URxvt.perl-ext: default,matcher,clipboard
+!URxvt.perl-ext: default,matcher
+!URxvt.keysym.M-u: perl:url-select:select_next
+
+!URxvt*perl-ext-common: default,matcher,vtwheel,keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+!URxvt.keysym.M-f: perl:matcher:list
+URxvt.keysym.M-q: perl:matcher:last
+
+! URxvt.colorUL: fg1
+
+URxvt.matcher.rend.0: Uline fg6
+
+URxvt.matcher.pattern.1: (bug|BZ|Bz):?\\s+(\\d+)
+URxvt.matcher.launcher.1: sensible-browser http:\/\/shilc211.sh.intel.com:41006\/show_bug.cgi?id=$2
+URxvt.matcher.rend.1: Uline fg5
+
+URxvt.matcher.pattern.2: \\bcommit:?\\s+([\\da-f]\{7,41\})
+URxvt.matcher.launcher.2: sensible-browser https:\/\/android.intel.com/#/q/commit:$1,n,z
+! https:\/\/opticm6.rds.intel.com/r/#/q/commit:$1,n,z
+! URxvt.matcher.rend.2: Uline fg1
+
+URxvt.matcher.pattern.3: \\bChange-Id:\\s+(I[\\da-f]\{40\})
+URxvt.matcher.launcher.3: sensible-browser https:\/\/android.intel.com/#/q/$1,n,z
+URxvt.matcher.rend.3: Uline fg6
+
+URxvt.matcher.pattern.4: ((OAM|IMINAN)-\\d+)
+URxvt.matcher.launcher.4: sensible-browser https:\/\/jira01.devtools.intel.com\/browse\/$1
+
+
+!URxvt*font: xft:Menlo:pixelsize=10
+URxvt*font: xft:Ubuntu Mono derivative Powerline:medium:size=9
+! URxvt*font: xft:DejaVu Sans Mono for Powerline:pixelsize=10
+! URxvt*font: xft:Meslo LG M for Powerline:pixelsize=10
+!URxvt*font: xft:Inconsolata for Powerline:pixelsize=12
+! URxvt*font: xft:Menlo:pixelsize=10
+! URxvt.font: xft:DejaVu Sans Mono:size=8,7x14
+!URxvt.letterSpace: -1
+! URxvt*font: xft:Ubunu Mono:size=8
+!URxvt*font:     xft:mono:medium:size=8
+xterm*faceName: xft:mono:medium:size=8
+
+URxvt.keysym.C-KP_7: command:\033]710;xft:Ubuntu Mono derivative Powerline:size=11\007
+URxvt.keysym.C-KP_4: command:\033]710;xft:Ubuntu Mono derivative Powerline:size=10\007
+URxvt.keysym.C-KP_1: command:\033]710;xft:Ubuntu Mono derivative Powerline:size=9\007
+
+URxvt.keysym.C-KP_8: command:\033]710;xft:Meslo:pixelsize=11\007
+URxvt.keysym.C-KP_5: command:\033]710;xft:Meslo:pixelsize=10\007
+URxvt.keysym.C-KP_2: command:\033]710;xft:Meslo:pixelsize=9\007
+
+URxvt.keysym.C-KP_9: command:\033]710;xft:Menlo:pixelsize=11\007
+URxvt.keysym.C-KP_6: command:\033]710;xft:Menlo:pixelsize=10\007
+URxvt.keysym.C-KP_3: command:\033]710;xft:Menlo:pixelsize=9\007
+URxvt.keysym.C-KP_Subtract: command:\033]710;xft:Ubuntu Mono derivative Powerline:pixelsize=20\007
+URxvt.keysym.C-KP_Add: command:\033]710;xft:Menlo:pixelsize=15\007
+
+!URxvt.font: xft:monaco:size=10
+
+URxvt.urgentOnBell:         True
+URxvt.cutchars: "\ ` \"'-&()*,;<=>?@[]^{|}/.\:"$│
+!URxvt*inheritPixmap:        True
+URxvt*jumpScroll:           False
+URxvt*visualBell:           False
+URxvt*scrollBar:            False
+!URxvt*scrollWithBuffer:     False
+URxvt*scrollTtyOutput:      False
+URxvt*scrollTtyKeypress:    True
+!URxvt*scrollBar:            False
+URxvt*scrollWithBuffer:     True
+!URxvt*scrollTtyOutput:      False
+!URxvt*scrollTtyKeypress:    True
+URxvt*internalBorder:       1
+URxvt*externalBorder:       0
+URxvt*mouseWheelScrollPage: False
+
+URxvt*dynamicColors:        on
+URxvt*highlightSelection:   true
+URxvt*eightBitInput:        true
+URxvt*metaSendsEscape:      true
+URxvt*iso14755:             false
+URxvt*iso14755_52:          false
+
+URxvt*geometry:             110x25+10+30
+URxvt*depth: 16
+URxvt.print-pipe:           cat > $(echo /tmp/urxvt.scrollback.$(date +'%Y-%m-%d.%H_%m_%S'))
+
+!URxvt*foreground:           rgb:C/C/C
+!URxvt*background:           rgba:0000/0000/0000/2222
+URxvt*borderColor:          rgb:00/00/00
+URxvt*tintColor:            #555555
+URxvt*cursorColor:          #bb33bb
+URxvt.colorIT:          #bb33bb
+URxvt*shading:              50
+!URxvt*reverseVideo:         False
+URxvt*fading:               30
+URxvt*saveLines:            100000
+
+! Jeu de couleurs honteusement copié sur le .Xdefaults de
+! http://www.hewphoria.com/?p=submission&type=config
+
+!!red
+!URxvt*color1:                           #ea0000
+!URxvt*color9:                           #ea0000
+!!green
+!URxvt*color2:                           #FFFFFF
+!URxvt*color10:                          #FFFFFF
+!!blue
+!URxvt*color4:                           #4a5463
+!URxvt*color12:                          #4a5463
+!!magenta
+!URxvt*color5:                           #ff6600
+!URxvt*color13:                          #ff6600
+!!cyan
+!URxvt*color6:                           #a1b5cd
+!URxvt*color14:                          #a1b5cd
+!!yellow
+!URxvt*color3:                           #ff6600
+!URxvt*color11:                          #ff6600
+
+
+!*VT100.Translations: #override <Key>BackSpace: string("\177")\n\
+!                               <Key>Delete: string("\033[3~")\n\
+!                               <Key>Home: string("\033OH")\n\
+!                               <Key>End: string("\033OF")
+
+!URxvt.keysym.M-Up: \033[1;3A
+!URxvt.keysym.M-Down: \033[1;3B
+!URxvt.keysym.M-Right: \033[1;3C
+!URxvt.keysym.M-Left: \033[1;3D
+!URxvt.keysym.M-Prior: \033[5;3~
+!URxvt.keysym.M-Next: \033[6;3~
+!URxvt.keysym.M-End: \033[1;3F
+!URxvt.keysym.M-Home: \033[1;3H
+!URxvt.keysym.Home: \033[7~
+!URxvt.keysym.End: \033[8~
+!URxvt.keysym.KP_Home: \033[7~
+!URxvt.keysym.HP_End: \033[8~
+!
+!URxvt.keysym.C-Up: \033[1;5A
+!URxvt.keysym.C-Down: \033[1;5B
+!URxvt.keysym.C-Right: \033[1;5C
+!URxvt.keysym.C-Left: \033[1;5D
+!URxvt.keysym.C-Prior: \033[5;5~
+!URxvt.keysym.C-Next: \033[6;5~
+!URxvt.keysym.C-End: \033[1;5F
+!URxvt.keysym.C-Home: \033[1;5H
+!
+!URxvt.keysym.C-M-Up: \033[1;7A
+!URxvt.keysym.C-M-Down: \033[1;7B
+!URxvt.keysym.C-M-Right: \033[1;7C
+!URxvt.keysym.C-M-Left: \033[1;7D
+!URxvt.keysym.C-M-Prior: \033[5;7~
+!URxvt.keysym.C-M-Next: \033[6;7~
+!URxvt.keysym.C-M-End: \033[1;7F
+!URxvt.keysym.C-M-Home: \033[1;7H
+!
+XTerm*metaSendsEscape: true

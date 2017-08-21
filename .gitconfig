@@ -45,22 +45,23 @@
 ###ODC###    insteadOf=git://android.intel.com/
 ###ODC###[url "ssh://gerrit-celad.tl.intel.com/"]
 ###ODC###    insteadOf=ssh://android.intel.com/
-[url "ssh://gerrit-glb.tl.intel.com/"]
-    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
-[url "ssh://gerrit-glb.tl.intel.com/"]
-    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
-[url "ssh://gerrit-glb.tl.intel.com/"]
-    insteadOf=git://android.intel.com/
-[url "ssh://gerrit-glb.tl.intel.com/"]
-    insteadOf=ssh://android.intel.com/
-###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
-###FSL###    insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
-###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
-###FSL###    insteadOf=git://jfumg-gcrmirror.jf.intel.com/
-###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
-###FSL###    insteadOf=git://android.intel.com/
-###FSL###[url "ssh://gitmirror/~repomirror/android/main-mirror/"]
-###FSL###    insteadOf=ssh://android.intel.com/
+
+[url "ssh://android-mirror-tl.devtools.intel.com/"]
+  insteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+  insteadOf=git://jfumg-gcrmirror.jf.intel.com/
+  insteadOf=git://android.intel.com/
+  insteadOf=ssh://android.intel.com:29418/
+  insteadOf=ssh://android.intel.com/
+  insteadOf=git://android-mirror.devtools.intel.com/
+  insteadOf=ssh://android-mirror.devtools.intel.com/
+  insteadOf=ssh://android-mirror.devtools.intel.com:29418/
+[url "ssh://android.intel.com:29418/"]
+  pushInsteadOf=ssh://android.intel.com/
+  pushInsteadOf=ssh://android.intel.com:29418/
+  pushInsteadOf=ssh://jfumg-gcrmirror.jf.intel.com/
+  pushInsteadOf=ssh://jfumg-gcrmirror.jf.intel.com:29418/
+  pushInsteadOf=ssh://android-mirror.devtools.intel.com/
+  pushInsteadOf=ssh://android-mirror.devtools.intel.com:29418/
 
 [url "https://github.com/"]
      insteadOf=git://github.com/
