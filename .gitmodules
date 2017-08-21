@@ -1,4 +1,4 @@
-[submodule ".vim/bundle/CCTree"]
+[submodule "vim/.vim/bundle/CCTree"]
 	path = vim/.vim/bundle/CCTree
 	url = https://github.com/hari-rangarajan/CCTree.git
 [submodule ".vim/bundle/file-line"]
