@@ -1,0 +1,1 @@
+/home/seb/workspace/vim-colors-solarized/colors/solarized.vim
