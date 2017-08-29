@@ -3,7 +3,6 @@
 alias vi=/usr/bin/vim
 alias b="echo -e '\a'"
 alias z="ssh lab2"
-alias mz="sshfs lab2: ~/lab2"
 alias c="cd $(< ~/.cwd)"
 # alias c="chromium-browser --proxy-pac-url=http://wpad.intel.com/wpad.dat"
 alias hl="grep -A9999"

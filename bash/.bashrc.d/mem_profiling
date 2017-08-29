@@ -1,4 +1,0 @@
-
-alias bkup_uc="rsync -axPh ~/sshfs/lab@localhost/home/lab/mem_profiling/uc/ /home/seb/bz/mem_profiling/uc/"
-alias upload_uc="rsync -axPh ~/bz/sofia/mem_profiling/uc/ ~/sshfs/lab@localhost/home/lab/mem_profiling/uc/"
-alias time_match="~/workspace/teamforge/utilities-scripts/ram/mem_profiling/scripts/time_match.sh"

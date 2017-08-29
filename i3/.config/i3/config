@@ -51,11 +51,6 @@ bindsym $mod+Mod1+Down  focus parent; focus down; focus child
 bindsym $mod+Mod1+Up    focus parent; focus up; focus child
 bindsym $mod+Mod1+Right focus parent; focus right; focus child
 
-bindsym Mod1+Left  focus parent; focus left; focus child
-bindsym Mod1+Down  focus parent; focus down; focus child
-bindsym Mod1+Up    focus parent; focus up; focus child
-bindsym Mod1+Right focus parent; focus right; focus child
-
 # # move focused window
 # bindsym $mod+Shift+J move left
 # bindsym $mod+Shift+K move down

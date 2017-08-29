@@ -1,2 +1,0 @@
-export PATH=$PATH:~/tizen-sdk/tools/ide/bin
-export PATH=$PATH:~/tizen-sdk/tools/emulator/bin
