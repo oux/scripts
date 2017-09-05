@@ -61,7 +61,7 @@ done
 
 }
 
-function go() {
+function CD() {
 
 pushd $(dirname $(readlink $(which $1)))
 

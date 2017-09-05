@@ -1,1 +1,0 @@
-/home/seb/workspace/misc/votl/syntax/votl.vim

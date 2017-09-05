@@ -1,1 +1,0 @@
-/home/seb/workspace/teamforge/utilities-scripts/general/logcat.vim
